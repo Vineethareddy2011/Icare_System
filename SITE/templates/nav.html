@@ -1,0 +1,196 @@
+<!--Main Navigation-->
+{% load i18n %}
+<header>
+  <!--sidebar-->
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+    <div class="position-sticky">
+      <div class="list-group list-group-flush mx-3 mt-4">
+        <a
+          href="{% url 'home'%}"
+          class="list-group-item list-group-item-action py-2"
+        >
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i
+          ><span>{% trans "Main dashboard" %}</span>
+        </a>
+
+        <a
+          href="{% url 'viewpatients' slug='0'%}"
+          class="list-group-item list-group-item-action py-2"
+        >
+          <i class="fas fa-lock fa-fw me-3"></i><span>{% trans "Patients" %}</span>
+        </a>
+        {% if user.is_admin or user.user_roles == "OfficeAdmin" %}
+        <a
+          href="{% url 'userslist' %}"
+          class="list-group-item list-group-item-action py-2"
+          ><i class="fas fa-users fa-fw me-3"></i><span>{% trans "Users" %}</span></a
+        >
+        {% endif %}
+        <a
+          href="{% url 'reportlist' %}"
+          class="list-group-item list-group-item-action py-2"
+          ><i class="fa fa-file-text fa-fw me-3"></i><span>{% trans "Reports"  %}</span></a
+        >
+      </div>
+    </div>
+  </nav>
+  <!--sidebar-->
+  <!-- Navbar -->
+  <nav
+    id="main-navbar"
+    class="navbar navbar-expand-lg navbar-light bg-white fixed-top"
+  >
+    <!-- Container wrapper -->
+    <div class="container-fluid">
+      <!-- Toggle button -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-mdb-toggle="collapse"
+        data-mdb-target="#sidebarMenu"
+        aria-controls="sidebarMenu"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+
+      <!-- Brand -->
+      <a class="navbar-brand" href="{% url 'home'%}">
+        <i
+          class="fa fa-user-md fa-fw me-3"
+          style="font-size: 24px; color: black"
+        ></i
+        ><span>{% trans "ICARE"%}</span>
+        <!--img src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png" height="25" alt="" loading="lazy" /-->
+      </a>
+      <!-- Search form -->
+
+      <!-- Right links -->
+      <ul class="navbar-nav ms-auto d-flex flex-row">
+        <!-- Notification dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <i class="fas fa-bell"></i>
+            <span class="badge rounded-pill badge-notification bg-danger"
+              >{% trans "1"%}</span
+            >
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li><a class="dropdown-item" href="#">{% trans "Some news"%}</a></li>
+            <li><a class="dropdown-item" href="#">{% trans "Another news"%}</a></li>
+            <li>
+              <a class="dropdown-item" href="#">{% trans "Something else"%}</a>
+            </li>
+          </ul>
+        </li>
+
+        <!-- Icon -->
+        <li class="nav-item">
+          <a class="nav-link me-3 me-lg-0" href="#">
+            <i class="fas fa-fill-drip"></i>
+          </a>
+        </li>
+        <!-- Icon -->
+        <li class="nav-item me-3 me-lg-0">
+          <a class="nav-link" href="#">
+            <i class="fab fa-github"></i>
+          </a>
+        </li>
+
+        <form method="POST" action="{% url 'set_language' %}">
+          {% csrf_token %}
+          <!-- Icon dropdown -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-mdb-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="united kingdom flag m-0"></i>
+            </a>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="navbarDropdown"
+            >
+              {% for lang_code, lang_name in LANGUAGES %}
+              <li>
+                <button type="submit" name="language" value="{{ lang_code }}" class="dropdown-item">
+                  <i class="{{ lang_code }} flag"></i>{{ lang_name }}
+                  {% if request.LANGUAGE_CODE == lang_code %}
+                  <i class="fa fa-check text-success ms-2"></i
+                  >{% endif %}
+                </button>
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+        </form>
+        
+
+        <!-- Avatar -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-mdb-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+              class="rounded-circle"
+              height="22"
+              alt=""
+              loading="lazy"
+            />
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li><a class="dropdown-item" href="#">{% trans "My profile" %}</a></li>
+            <li><a class="dropdown-item" href="#">{% trans "Settings" %}</a></li>
+            <li>
+              <a class="dropdown-item" href="{% url 'account_logout' %}"
+                >{% trans "Logout" %}</a
+              >
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <!-- Container wrapper -->
+  </nav>
+  <!-- Navbar -->
+  <script type="text/javascript">
+    var header = document.getElementById("sidebarMenu");
+    var btns = header.getElementsByClassName(
+      "list-group-item list-group-item-action py-2"
+    );
+    for (var i = 0; i < btns.length; i++) {
+      btns[i].addEventListener("click", function () {
+        var current = document.getElementsByClassName("active");
+        if (current.length > 0) {
+          current[0].className = current[0].className.replace(" active", "");
+        }
+        this.className += " active";
+      });
+    }
+  </script>
+</header>
+<!--Main Navigation-->

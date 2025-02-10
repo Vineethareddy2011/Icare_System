@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--content goes below-->
+<main style="margin-top: 58px">
+<div class="container pt-4">
+  <!--form div starts below-->
+    <div class="card margin-top-set">
+      <div class="card-header">Edit Member</div>
+      <div class="card-body pb-pad">
+        <form id="edituserform" class="form-horizontal" role="form" method="POST">
+          {% csrf_token %}
+          <!--div 1 0f form-->
+          <div class="box-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">First Name</label>
+              <div class="col-sm-8">
+                <input type="hidden"  id="client_id" value="{{user.id}}" style="dispaly:none;">
+                <input type="text" class="text-box form-control wid-form" id="first_name" name="first_name" value="{{user.first_name }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Last Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control wid-form" id="last_name" name="last_name" value="{{ user.last_name }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Date of Birth</label>
+              <div class="col-sm-8">
+              <input type="date" class="text-box form-control" id="datepicker-dob" name="date_of_birth" value="{{ user.date_of_birth|date:"Y-m-d" }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">User Roles <span>*</span></label>
+              <div class="col-sm-8">
+                <select class="text-box form-control wid-form select-box-pad" name="user_roles" id="user_roles">
+                  <option>Select Staff Role</option>
+                  {% for key, role in userroles %}
+                  <option value="{{ role }}">{{ role }}</option>
+                  {% endfor%}
+                </select>
+              </div>
+            </div>
+          </div>
+          <!--div 1 of fomr ends above-->
+          <!--div 2 of form starts below-->
+          <div class="box-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+              <div class="col-sm-8">
+                <input type="email" class="text-box form-control" name="email" {% if user.email %} value="{{ user.email }}" {% endif %} id="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Mobile</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" name="mobile" value="{{ user.mobile }}" id="mobile">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Country<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="country" name="country" value="{{ user.country }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">County<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="county" name="county" value="{{ user.county }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Sub County<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="subcounty" name="subcounty" value="{{ user.subcounty }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">City<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="city" name="city" value="{{ user.city }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Area<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="area" name="area" value="{{ user.area }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Pin-Code</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" name="pincode" value="{{ user.pincode }}" id="pincode">
+              </div>
+            </div>
+          </div>
+          <br clear="all" />
+          <!--branch 2 ends above-->
+          <!--btn row-->
+          <div class="btns-row">
+            <div class="form-group btns align-btns">
+              <button class="btn btn-success"><i class="fa fa-check padd"></i>Submit</button>
+              <button class="btn btn-dark" type="reset"><i class="fa fa-times padd"></i>Cancel</button>
+            </div>
+          </div>
+          <!--btn row ends above-->
+        </form>
+      </div>
+    </div>
+  <!--form div ends above-->
+  </div>
+<!--content ends above-->
+</main>
+<!--wrapper ends above-->
+{% endblock content %}

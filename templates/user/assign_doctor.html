@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block breadcrumb %}
+<li>Staff List</li>
+{% endblock %}
+{% block content %}
+<!--content goes below-->
+<main style="margin-top: 58px">
+  <div class="container pt-4">
+    <div class="row search_list">
+      <div class="col input-group">
+          <form class="d-none d-md-flex input-group w-auto" action="{% url 'SearchUsers' %}">
+            <input autocomplete="off" type="search" class="form-control rounded"
+              placeholder='Search Staff' name="q" style="min-width: 225px" />
+            <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+          </form>       
+      </div>
+    </div>
+    <div class="row list_page_view">
+      <table class="table table-striped" data-tablesaw-mode="columntoggle" id="active_users">
+        <thead>
+          <tr>
+            <th width="20%" scope="col">Staff Name</th>
+            <th width="20%" scope="col">Role</th>
+            <th width="20%" scope="col">Status</th>
+            <th width="20%" scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for userobject in list_of_users %}
+          {% if userobject.user_roles == 'Doctor' %}
+          <tr>
+            <td><a href="{% url 'userprofile' userobject.id %}" style="color:#337ab7">
+            {{ userobject.first_name|capfirst }}</a></td>
+            <td>{{ userobject.user_roles }}</td>
+            {% if userobject.is_active %}
+            <td><a href="{% url 'deleteuser' userobject.id %}"><i class="fa fa-circle green"></i></a></td>
+            {% else %}
+            <td><a href="{% url 'deleteuser' userobject.id %}"><i class="fa fa-circle red"></i></a></td>
+            {% endif %}
+              <td>
+                <a class="btn-sm btn-dark text-white" href="{% url 'assigndoctor' patient_id=patient user_id=userobject.id %}"><span>Assign</span></a>
+              </td>
+          </tr>
+          {% endif %}
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<!--content ends above-->
+{% endblock content %}

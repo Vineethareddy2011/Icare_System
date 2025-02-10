@@ -1,0 +1,133 @@
+{% extends 'base.html' %} {% load static %}
+{% block breadcrumb %} 
+<li>{{ Patient.first_name|capfirst }} Member</li>
+{% endblock %}
+{% block content %}
+<!--content goes below-->
+<main class="background-image" style="background-image: url('{% static 'img/image4.jpg' %}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%; margin-top: 58px
+    height: 100vh;">
+  <div class="container pt-4">
+    <!--form div starts below-->
+    <div class="wrap-cp-div margin-top-set">
+      <div class="btn-row">
+        <a href="{% url 'editPatient' Patient.id %}" class="btn btn-dark"><i class="fa fa-pencil-square-o padd"></i> Edit</a>
+        {% if Patient.status == 'UnAssigned' and user.user_roles != "Doctor" or request.user not in varray and user.user_roles != "Doctor" %}
+        <a href="{% url 'assignPatient' Patient.id %}" class='btn btn-dark'><i class="fa fa-plus padd"></i> Assign</a>
+        {% elif Patient.status == 'Waiting' and user.user_roles != "Doctor" or Patient.status == 'Inservice' and user.user_roles != "Doctor" %}
+        <a href="{% url 'unservePatient' Patient.id %}" class='btn btn-dark'><i class="fa fa-plus padd"></i> UnAssign</a>
+        {% endif %}
+        {% if user.user_roles != "Doctor" %}
+        <a href="{% url 'list_doctors' Patient.id %}" class='btn btn-dark'><i class="fa fa-plus padd"></i> Assign Doctor</a>
+        {% endif %}
+        {% if Patient.status == 'Waiting' and request.user in varray %}
+        <a href="{% url 'servePatient' Patient.id %}" class='btn btn-green text-light'><i class="fa fa-medkit padd"></i> Serve</a>
+        {% elif Patient.status == 'Inservice' and request.user in varray%}
+        <a href="{% url 'servePatient' Patient.id %}" class='btn btn-green text-light'><i class="fa fa-heartbeat padd"></i> Served</a>
+        {% endif %}
+
+        <a href="{% url 'addVisit' Patient.id %}" class="btn btn-info" ><i class="fa fa-book-medical padd"></i>  Add Visit</a>
+
+        <a href="{% url 'updatePatientprofile' Patient.id %}" class="btn btn-info"><i class="fa fa-file-image-o padd"></i> Update Profile</a>
+
+        <a href={% url 'createreport' Patient.id %} class="btn btn-info"><i class="fa fa-file-text padd"></i> Create Report</a>
+        {% if user.is_admin or user.user_roles == "OfficeAdmin" %}
+        <a href="{% url 'deletePatient' Patient.id %}" class="btn btn-danger"><i class="fa fa-trash-o padd"></i> Delete</a>
+        {% endif %}
+        <br clear="all" />
+      </div>
+      <div class="card" style ="width:100%">
+        <div class="img-div card-header">
+          <h3>{{ Patient.last_name|capfirst }} {{ Patient.first_name|capfirst }}</h3>
+          <h3>National ID: {{ Patient.national_id}}</h3>
+          <div class="row">
+            <div class="col-6">
+          <img src="{% if Patient.photo %}/{{ Patient.photo }}{% else %}/static/img/Marlade.png{% endif %}" alt="Member Photo" height="350" width="350" /><br /><br />
+            </div> 
+        </div>
+          <br clear="all" />
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Status : </label>
+            {% if Patient.is_active %}
+            <td><i class="fa fa-square icon-squa green padd"></i>Active</td>
+            {% else %}
+            <td><i class="fa fa-square icon-squa red padd"></i>InActive</td>
+            {% endif %}
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Patient Id : </label>
+            {{ Patient.patient_id}}
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Medicare No: </label>
+            {{ Patient.medcare }}
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Blood Type </label>
+            {{ Patient.blood_type }}
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Patient Id </label>
+            {{ Patient.patient_id }}
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Email </label>
+            {{ Patient.email }}
+          </div>
+          <div class="form-group" >
+            <label for="inputEmail3" class="col-lg-5 col-md-6 col-sm-6 col-xs-7 control-label">Mobile : </label>
+            {{ Patient.mobile|default:" - " }}
+          </div>
+          <div class="form-group" >
+            <label for="inputEmail3" class="col-md-12 control-label text-black text-center font-weight-bold">Visits : </label>
+            <table class="table">
+                  <thead>
+                      <tr>
+                      <th scope="col">#</th>
+                      <th scope="col">Patient Id</th>
+                      <th scope="col">Pin Code</th>
+                      <th scope="col">Visit Id</th>
+                      <th scope="col">Visit Date</th>
+                      <th scope="col">Admission Date</th>
+                      <th scope="col">Release Date</th>
+                      <th scope="col">Report</th>
+                      <th scope="col">Status</th>                    
+                      <th scope="col">Assigned To</th>
+                      </tr>
+                  </thead>
+                  {% for visit in visits.all %}
+                  <tbody>
+                    <ul>  
+                      <th scope="row">{{forloop.counter}}</th>
+                      <th scope="row">{{Patient.patient_id}}</a></th>
+                      <td>{{Patient.pincode}}</td>
+                      <td>{{visit.visit_id}}</td>
+                      <td>{{visit.visit_date}}</td>
+                      <td>{{visit.admission_date}}</td>
+                      <td>{{visit.release_date}}</td>
+                      <td>{{Patient.get_documents.doc_id}}</td>
+                      <td>{{visit.visit_status}}</td>                    
+                      <td>
+                        {% for assignee in visit.assigned_to.all  %}
+                        <li>{{assignee}}</li>
+                        {% endfor %}
+                      </td>
+                    </ul>
+                  </tbody>
+                  {% endfor %}
+              </table>
+            </div>
+        </div>
+        <br clear="all" />
+      </div>
+      <!--form div ends above-->
+    </div>
+    <!--content ends above-->
+  </div>
+</main>
+{% endblock content %}

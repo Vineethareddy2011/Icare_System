@@ -1,0 +1,89 @@
+{% load i18n %}<head>
+<style>
+@page {
+        size: a4 portrait;
+        @frame header_frame {           /* Static Frame */
+            -pdf-frame-content: header_content;
+            left: 50pt; width: 512pt; top: 50pt; height: 40pt;
+        }
+        @frame content_frame {          /* Content Frame */
+            left: 50pt; width: 512pt; top: 90pt; height: 632pt;
+        }
+        @frame footer_frame {           /* Another static Frame */
+            -pdf-frame-content: footer_content;
+            left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+        }
+    }
+  th{
+     text-align: left;
+  }
+</style>
+</head>
+<!--Main layout-->
+<body>
+
+    
+      <div>
+        <h2>{% trans "Medical Status Report" %} </h2>     
+      </div>
+
+          <!--div 1 0f form-->
+            <h4>{% trans "Staff Information: " %} </h4>
+              <table>
+              <tr>
+                <th>{% trans "Staff" %}</th>
+                <th>Date</th> 
+              </tr>
+              <tr>
+                <td>{% trans "{{staff}}" %}</td>
+                <td>{% trans "{{date}}" %}</td>
+              </tr>
+              </table> 
+          
+              <h4>{% trans "Patients Information: " %}</h4>
+            <table >
+              <tr>
+                <th>{% trans "First Name: " %}</th>
+                <th>{% trans "Last Name: " %}</th>
+                <th>{% trans "City: " %}</th>
+                <th>{% trans "Blood Type" %}</th>
+                <th>{% trans "Pin Code: " %}</th>
+                <th>{% trans "Medicare No: " %}</th>
+              </tr>
+              <tr>
+                <td>{% trans "{{first_name }}" %}</td>
+                <td>{% trans "{{last_name }}" %}</td>
+                <td>{% trans "{{city }}" %}</td>
+                <td>{% trans "{{blood_type }}" %}</td>
+                <td>{% trans "{{pincode }}" %}</td>
+                <td>{% trans "{{medcare }}" %}</td>
+              </tr>
+            </table>
+
+          </br>
+          </br>
+          <!--div 1 of fomr ends above-->
+          <!--div 2 of form starts below-->
+          <table>
+            <tr>
+              <th>
+                <h4>{% trans "Diagnosis: " %}</h4>
+              </th>
+              <th>
+              <h4>{% trans "Medical History: " %}</h4>  
+              </th>
+            </tr>
+              <tr>
+              <td><p>{% trans "{{diagnosis }}" %}</p></td>
+               <td> <p>{% trans "{{medical_history }}" %}</p></td>
+            </tr>
+          </table>
+          <!--branch 2 ends above-->
+          <!--btn row-->
+          
+          <!--btn row ends above-->
+    <div id="footer_content">(c) - page <pdf:pagenumber>
+        of <pdf:pagecount>
+    </div>
+
+</body>

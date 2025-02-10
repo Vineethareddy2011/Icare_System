@@ -1,0 +1,532 @@
+{% extends 'base.html' %} {% load static %}
+{% block content %}
+
+<main class="background-image" style="background-image: url('{% static 'img/image4.jpg' %}');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    width: 100%; margin-top: 58px
+    height: 100vh;">
+<!--Main layout--> 
+    <div class="container pt-4">
+      <!-- Section: Main chart -->
+      {% if request.user %}
+      <div class="row">
+            <!-- table card-1 start -->
+            <div class="col-md-12 col-xl-6">
+                <div class="card flat-card">
+                    <div class="row-table">
+                        <div class="col-sm-6 card-body br">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="fas fa-smile-o text-c-yellow mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="{% url 'viewpatients' slug='Served' %}">
+                                    <h5 class="m-2">{{Served_patients}}</h5>
+                                    <span>Served Patients</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="icon feather icon-user text-c-red mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="{% url 'viewpatients' slug='Inservice' %}">
+                                    <h5 class="m-2">{{Inservice_patients}}</h5>
+                                    <span>Serving Patients</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-table">
+                        <div class="col-sm-6 card-body br">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="fas fa-stethoscope text-c-blue mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="{% url 'viewpatients' slug='Waiting' %}">
+                                    <h5 class="m-2">{{Waiting_patients}}</h5>
+                                    <span>Patients Waiting</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="fas fa-users text-c-green mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="{% url 'viewpatients' slug='a' %}">
+                                  <h5 class="m-2" >{{Patients_count}}</h5>
+                                    <span>Assigned Patients</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- widget primary card start -->
+                <div class="card flat-card widget-primary-card">
+                    <div class="row-table">
+                        <div class="col-sm-3 card-body">
+                            <i class="feather icon-star-on"></i>
+                        </div>
+                        <div class="col-sm-9">
+                          
+                            <h4>4000 +</h4>
+                            <h6>Ratings Received</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- widget primary card end -->
+            </div>
+            <!-- table card-1 end -->
+            <!-- table card-2 start -->
+            <div class="col-md-12 col-xl-6">
+                <div class="card flat-card">
+                    <div class="row-table">
+                        <div class="col-sm-6 card-body br">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="icon feather icon-file-text text-c-blue mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="{% url 'viewpatients' slug='a' %}">
+                                    <h5 class="m-2">2000+</h5>
+                                    <span>Files</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="icon feather icon-mail text-c-blue mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="{% url 'viewpatients' slug='a' %}">
+                                    <h5 class="m-2">120</h5>
+                                    <span>Mails</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row-table">
+                        <div class="col-sm-6 card-body br">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="icon feather icon-rotate-ccw text-c-blue mb-1 d-block"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="#">
+                                    <h5 class="m-2">18</h5>
+                                    <span>Hours/day</span>
+                                  </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 card-body">
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <i class="icon feather icon-shopping-cart text-c-blue mb-1 d-blockz"></i>
+                                </div>
+                                <div class="col-sm-8 text-md-center">
+                                  <a href="#">
+                                    <h5 class="m-2">100%</h5>
+                                    <span>Order</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- widget-success-card start -->
+                <div class="card flat-card widget-purple-card">
+                    <div class="row-table">
+                        <div class="col-sm-3 card-body">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="col-sm-9">
+                            <h4>17</h4>
+                            <h6>Achievements</h6>
+                        </div>
+                    </div>
+                </div>
+                <!-- widget-success-card end -->
+            </div>
+          </div>
+          {% endif %}
+      <!-- Section: Main chart -->
+
+      <!--Section: Sales Performance KPIs-->
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+              <strong>Patient Assigned</strong>
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Patients ID</th>
+                    <th scope="col">Patient</th>
+                    <th scope="col">Visits</th>
+                    <th scope="col">National Id</th>
+                    <th scope="col">Medicare No</th>
+                    <th scope="col">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                   {% for patient in Patients.all %}
+                  <tr>            
+                    <th scope="row">{{forloop.counter}}</th>
+                    <th scope="row"><a class="" href="{% url 'patientprofile' patient.id %}">{{patient.patient_id}}</a></th>
+                    <td><a class="" href="{% url 'patientprofile' patient.id %}">{{patient.first_name}} {{patient.last_name}}</a></td>
+                    <td>{{patient.get_visits}}</td>
+                    <td>{{patient.national_id}}</td>                 
+                    <td>{{patient.medcare}}</td>
+                    <td>{{patient.status}}</td>
+                  </tr>
+                  {% endfor %}
+                  <tr>
+                    <th scope="row">Percentage change</th>
+                    <td>
+                      <span class="text-danger">
+                        <i class="fas fa-caret-down me-1"></i><span>-48.8%%</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-success">
+                        <i class="fas fa-caret-up me-1"></i><span>14.0%</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-success">
+                        <i class="fas fa-caret-up me-1"></i><span>46.4%</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-success">
+                        <i class="fas fa-caret-up me-1"></i><span>29.6%</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-danger">
+                        <i class="fas fa-caret-down me-1"></i><span>-11.5%</span>
+                      </span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <th scope="row">Absolute change</th>
+                    <td>
+                      <span class="text-danger">
+                        <i class="fas fa-caret-down me-1"></i><span>-17,654</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-success">
+                        <i class="fas fa-caret-up me-1"></i><span>28</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-success">
+                        <i class="fas fa-caret-up me-1"></i><span>111</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-success">
+                        <i class="fas fa-caret-up me-1"></i><span>$1,092.72</span>
+                      </span>
+                    </td>
+                    <td>
+                      <span class="text-danger">
+                        <i class="fas fa-caret-down me-1"></i><span>$-1.78</span>
+                      </span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Sales Performance KPIs-->
+
+      <!--Section: Minimal statistics cards-->
+      <section>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-pencil-alt text-info fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>278</h3>
+                    <p class="mb-0">New Posts</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="far fa-comment-alt text-warning fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>156</h3>
+                    <p class="mb-0">New Comments</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-chart-line text-success fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>64.89 %</h3>
+                    <p class="mb-0">Bounce Rate</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-map-marker-alt text-danger fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>423</h3>
+                    <p class="mb-0">Total Visits</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-danger">278</h3>
+                    <p class="mb-0">New Projects</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-rocket text-danger fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-success">156</h3>
+                    <p class="mb-0">New Patients</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="far fa-user text-success fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-warning">64.89 %</h3>
+                    <p class="mb-0">Conversion Rate</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-chart-pie text-warning fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-info">423</h3>
+                    <p class="mb-0">Support Tickets</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="far fa-life-ring text-info fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-info">278</h3>
+                    <p class="mb-0">New Posts</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-book-open text-info fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 80%" aria-valuenow="80"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-warning">156</h3>
+                    <p class="mb-0">New Comments</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="far fa-comments text-warning fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div class="progress-bar bg-warning" role="progressbar" style="width: 35%" aria-valuenow="35"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-success">64.89 %</h3>
+                    <p class="mb-0">Bounce Rate</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-mug-hot text-success fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%" aria-valuenow="60"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div>
+                    <h3 class="text-danger">423</h3>
+                    <p class="mb-0">Total Visits</p>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fas fa-map-signs text-danger fa-3x"></i>
+                  </div>
+                </div>
+                <div class="px-md-1">
+                  <div class="progress mt-3 mb-1 rounded" style="height: 7px">
+                    <div class="progress-bar bg-danger" role="progressbar" style="width: 40%" aria-valuenow="40"
+                      aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Minimal statistics cards-->
+
+      <!--Section: Statistics with subtitles-->
+      <section>
+        <div class="row">
+          <div class="col-xl-6 col-md-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between p-md-1">
+                  <div class="d-flex flex-row">
+                    <div class="align-self-center">
+                      <i class="fas fa-pencil-alt text-info fa-3x me-4"></i>
+                    </div>
+                    <div>
+                      <h4>Total Posts</h4>
+                      <p class="mb-0">Monthly blog posts</p>
+                    </div>
+                  </div>
+                  <div class="align-self-center">
+                    <h2 class="h1 mb-0">18,000</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-md-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between p-md-1">
+                  <div class="d-flex flex-row">
+                    <div class="align-self-center">
+                      <i class="far fa-comment-alt text-warning fa-3x me-4"></i>
+                    </div>
+                    <div>
+                      <h4>Total Comments</h4>
+                      <p class="mb-0">Monthly blog posts</p>
+                    </div>
+                  </div>
+                  <div class="align-self-center">
+                    <h2 class="h1 mb-0">84,695</h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>  
+      </section>
+      <!--Section: Statistics with subtitles-->
+    </div>
+  </main>
+  <!--Main layout-->
+  <!-- MDB -->
+{% endblock content %}

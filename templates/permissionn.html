@@ -1,0 +1,9 @@
+<main>
+    <div class="container">
+        <ul>
+        {% for permission in permissions %}
+            <li>{{permission.id}} {{permission.name}}</li>
+        {% endfor %}
+        </ul>
+    </div>
+</main>

@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+<!--Main layout-->
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+      <div class="card">
+          <div class="card-header py-3">            
+            <div class="row">
+              <div class="col-md-12 mb-4 ">
+                <h2  class="h3 text-center">Medical Status Report </h2>
+              </div>
+            </div> 
+          </div>
+        </div>     
+      </div>
+        <form id="editPatientform" class="form-horizontal" role="form" method="POST">
+          {% csrf_token %}
+          <!--div 1 0f form-->
+          <div class="box-form">
+            <div class="form-group">
+              <h4 for="inputEmail3" class="col text-center">Report ID<span>*</span></h4>
+              <div class="col-sm-12">
+                <input type="text" class="text text-center form-control" id="id" name="id" value="{{ report.id }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <h4 for="inputEmail3" class="h4 text-center">Staff Information: </h4>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Staff: </label>
+                <input type="text" class="text-box form-control" id="staff" name="staff" value="{{ report.staff }}">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Date: </label>
+                <input type="text" class="text-box form-control" id="rdate" name="rdate" value="{{ report.date }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <h4 for="inputEmail3" class="h4 text-center">Patients Information: </h4>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">First Name: </label>
+                <input type="text" class="text form-control" id="first_name" name="first_name" value="{{  report.first_name }}">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Last Name: </label>
+                <input type="text" class="text form-control wid-form" id="last_name" name="last_name" value="{{report.last_name }}">
+              </div>
+             <div class="col-6">
+                <label for="inputEmail3" class="control-label">City: </label>
+                <input type="text" class="text form-control" id="city" name="city" value="{{ report.city }}" required="True">
+              </div>
+              <div class="col-6 mar-top-rad">
+                <label for="inputEmail3" class="col-sm-4 control-label">Blood Type</label>
+                <input type="text" class="text-box form-control" id="blood_type" name="blood_type" value="{{ report.blood_type }}">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Pin Code: </label>
+                <input type="text" class="text form-control" name="pincode" value="{{ report.pincode }}" id="pincode">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Medicare No: </label>
+                <input type="text" class="text form-control" id="medcare" name="medcare" value="{{ report.medcare }}">
+              </div>
+            </div>
+
+          </div>
+          <!--div 1 of fomr ends above-->
+          <!--div 2 of form starts below-->
+          <div class="box-form">
+            <div class="form-group">
+              <h4 for="inputEmail3" class="col text-center">Diagnosis<span>*</span></h4>
+              <div class="col-sm-12">
+                <input type="text" class="text form-control" id="diagnosis" name="diagnosis" value="{{ report.diagnosis }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <h4 for="inputEmail3" class="col text-center ">Medical History<span>*</span></h4>
+              <div class="col-sm-12">
+                <input type="text" class="text form-control" id="medical_history" name="medical_history" value="{{ report.medical_history }}">
+              </div>
+            </div>
+
+          </div>
+          <!--branch 2 ends above-->
+          <!--btn row-->
+          <div class="btns-row">
+                <button class="btn btn-success"><i class="fa fa-check padd"></i>View PDF</button>
+                <button class="btn btn-dark" href="#"><i class="fa fa-times padd"></i> Download PDF</button>
+          </div>
+          <!--btn row ends above-->
+        </form>
+    </div>
+</main>
+{% endblock content %}

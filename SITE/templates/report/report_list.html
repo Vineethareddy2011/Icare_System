@@ -1,0 +1,70 @@
+{% extends 'base.html' %} {% load static %}
+{% block content %}
+<!--Main layout-->
+<main class="background-image" style="background-image: url('{% static 'img/image4.jpg' %}');
+background-size: cover;
+background-repeat: no-repeat;
+background-attachment: fixed;
+width: 100%; margin-top: 58px
+height: 100vh;">
+    <div class="container pt-4">
+      <!-- Section: Main chart -->
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-header py-3"> 
+            <h5 class="mb-0 text-center"><strong>Reports</strong></h5>
+          </div>
+          <div class="card-body">              
+            <div class="row">
+              <div class="col-md-12 mb-4">
+                <form class="d-none d-md-flex input-group w-auto my-auto" action="#">
+                  <input autocomplete="off" type="search" class="form-control rounded"
+                    placeholder='Search Reports' name="q" style="min-width: 225px" />
+                  <span class="input-group-text border-0"><i class="fas fa-search"></i></span>
+              </form>
+              </div>
+            </div>
+          </div>
+      </section>
+      <!-- Section: Main chart -->
+
+      <!--Section: Sales Performance KPIs-->
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+              <strong>Reports</strong>
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Report Id</th>
+                    <th scope="col">Patient Names</th>
+                    <th scope="col">Medicare No</th>
+                    <th scope="col">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for report in Report_list %}
+                  <tr> 
+                    <th scope="row"></th>
+                    <th scope="row"><a class="" href="{% url 'viewreport' report.id %}">{{report.id}}</a></th>
+                    <td>{{report.first_name}} {{report.last_name}} </td>
+                    <td>{{report.medcare}}</td>
+                    <td>{{report.date}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--Section: Sales Performance KPIs-->
+    </div>
+  </main>
+{% endblock content %}

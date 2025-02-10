@@ -1,0 +1,84 @@
+
+{% extends "base.html" %}
+{% block content %}
+
+
+<!--Main layout-->
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+        <form id="editPatientform" class="form-horizontal" role="form" method="POST">
+        <h2  class="h3 text-center">Medical Status Report </h2>
+          {% csrf_token %}
+          <!--div 1 0f form-->
+          <div class="box-form">
+            <div class="form-group row">
+              <h4 for="inputEmail3" class="h4 text-center">Staff Information: </h4>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Staff: </label>
+                <input type="text" class="text-box form-control" id="staff" name="staff" value="{{ staff }}">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Date: </label>
+                <input type="text" class="text-box form-control" id="rdate" name="rdate" value="{{ curr_date }}">
+              </div>
+            </div>
+            <div class="form-group row">
+              <h4 for="inputEmail3" class="h4 text-center">Patients Information: </h4>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">First Name: </label>
+                <input type="text" class="text form-control" id="first_name" name="first_name" value="{{ patient.first_name }}">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">City: </label>
+                <input type="text" class="text form-control" id="city" name="city" value="{{patient.city }}" required="True">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Last Name: </label>
+                <input type="text" class="text form-control wid-form" id="last_name" name="last_name" value="{{ patient.last_name }}">
+              </div>
+              <div class="col-6 mar-top-rad">
+                <label for="inputEmail3" class="col-sm-4 control-label">Blood Type</label>
+                <input type="text" class="text-box form-control" id="blood_type" name="blood_type" value="{{ patient.blood_type }}">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Pin Code: </label>
+                <input type="text" class="text form-control" name="pincode" value="{{ patient.pincode }}" id="pincode">
+              </div>
+              <div class="col-6">
+                <label for="inputEmail3" class="control-label">Medicare No: </label>
+                <input type="text" class="text form-control" id="medcare" name="medcare" value="{{ patient.medcare }}">
+              </div>
+            </div>
+
+          </div>
+          <!--div 1 of fomr ends above-->
+          <!--div 2 of form starts below-->
+          <div class="box-form">
+            <div class="form-group">
+              <h4 for="inputEmail3" class="col text-center">Diagnosis<span>*</span></h4>
+              <div class="col-sm-12">
+                <textarea type="text" class="text-box form-control" name="diagnosis" required="True" id="diagnosis" cols="max" rows="10"></textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <h4 for="inputEmail3" class="col text-center ">Medical History<span>*</span></h4>
+              <div class="col-sm-12">
+                <textarea type="text" class="text-box form-control" name="medical_history" required="True" id="medical_history" cols="50" rows="20"></textarea>
+              </div>
+            </div>
+
+          </div>
+          <br clear="all" />
+          <!--branch 2 ends above-->
+          <!--btn row-->
+          <div class="btns-row">
+            <div class="form-group btns align-btns">
+              <button class="btn btn-success"><i class="fa fa-check padd"></i>Submit</button>
+              <a class="btn btn-dark" href="{{ request.META.HTTP_REFERER }}" type="reset"><i class="fa fa-times padd"></i> Cancel</a>
+            </div>
+          </div>
+          <!--btn row ends above-->
+        </form>
+    </div>
+</main>
+{% endblock content %}

@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block content %}
+<!--content goes below-->
+<main style="margin-top: 58px">
+<div class="container pt-4">
+  <!--form div starts below-->
+    <div class="card margin-top-set">
+      <div class="card-header">Edit Patient</div>
+      <div class="card-body pb-pad">
+        <form id="editPatientform" class="form-horizontal" role="form" method="POST">
+          {% csrf_token %}
+          <!--div 1 0f form-->
+          <div class="box-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">First Name</label>
+              <div class="col-sm-8">
+                <input type="hidden"  id="patient_id" value="{{patient.id}}" style="dispaly:none;">
+                <input type="text" class="text-box form-control wid-form" id="first_name" name="first_name" value="{{ patient.first_name }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Last Name</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control wid-form" id="last_name" name="last_name" value="{{ patient.last_name }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Gender</label>
+              <div class="col-sm-8 mar-top-rad">
+                <select class="text-box form-control wid-form select-box-pad" id='gender' name="gender" readonly>
+                  <option value="">----------</option>
+                  <option value="M" {% if patient.gender == 'M' %}selected='selected'{% endif %} >Male</option>
+                  <option value="F" {% if patient.gender == 'F' %}selected='selected'{% endif %}>Female</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Date of Birth</label>
+              <div class="col-sm-8">
+              <input type="date" class="text-box form-control" id="datepicker-dob" name="date_of_birth" value="{{ patient.date_of_birth|date:"Y-m-d" }}">
+              <input type="hidden" class="text-box form-control" name="national_id" required="True" value="{{ patient.national_id }}" id="national_id">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Blood Type</label>
+              <div class="col-sm-8 mar-top-rad">
+                <select class="text-box form-control wid-form select-box-pad" id='blood_type' name="blood_type" readonly>
+                  <option value="">----------</option>
+                  <option value="A" {% if patient.blood_type == 'A' %}selected='selected'{% endif %} >A</option>
+                  <option value="B" {% if patient.blood_type == 'B' %}selected='selected'{% endif %}>B</option>
+                  <option value="AB" {% if patient.blood_type == 'AB' %}selected='selected'{% endif %} >AB</option>
+                  <option value="O" {% if patient.blood_type == 'O' %}selected='selected'{% endif %} >O</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Patient ID</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="patient_id" name="patient_id" value="{{ patient.patient_id }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Medicare No</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="medcare" name="medcare" value="{{ patient.medcare }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Occupation<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" name="occupation" required="True" value="{{ patient.occupation }}" id="occupation">
+              </div>
+            </div>
+          </div>
+          <!--div 1 of fomr ends above-->
+          <!--div 2 of form starts below-->
+          <div class="box-form">
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Email</label>
+              <div class="col-sm-8">
+                <input type="email" class="text-box form-control" name="email" {% if patient.email %} value="{{ patient.email }}" {% endif %} id="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Mobile</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" name="mobile" value="{{ patient.mobile }}" id="mobile">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Country<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="country" name="country" value="{{ patient.country }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">County<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="county" name="county" value="{{ patient.county }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Sub County<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="subcounty" name="subcounty" value="{{ patient.subcounty }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">City<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="city" name="city" value="{{patient.city }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Area<span>*</span></label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" id="area" name="area" value="{{ patient.area }}" required="True">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="inputEmail3" class="col-sm-4 control-label">Pin-Code</label>
+              <div class="col-sm-8">
+                <input type="text" class="text-box form-control" name="pincode" value="{{ patient.pincode }}" id="pincode">
+              </div>
+            </div>
+          </div>
+          <br clear="all" />
+          <!--branch 2 ends above-->
+          <!--btn row-->
+          <div class="btns-row">
+            <div class="form-group btns align-btns">
+              <button class="btn btn-success"><i class="fa fa-check padd"></i>Submit</button>
+              <a class="btn btn-dark" href="{{ request.META.HTTP_REFERER }}" type="reset"><i class="fa fa-times padd"></i> Cancel</a>
+            </div>
+          </div>
+          <!--btn row ends above-->
+        </form>
+      </div>
+    </div>
+  <!--form div ends above-->
+  </div>
+<!--content ends above-->
+</main>
+<!--wrapper ends above-->
+{% endblock content %}
